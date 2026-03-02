@@ -1,0 +1,71 @@
+@import "tailwindcss";
+
+@theme {
+  --color-intel-950: #020617;
+  --color-intel-900: #0f172a;
+  --color-intel-800: #1e293b;
+  --color-intel-700: #334155;
+  --color-intel-600: #475569;
+  --color-intel-400: #94a3b8;
+  --color-intel-100: #f1f5f9;
+  --color-intel-50: #f8fafc;
+
+  --color-accent-blue: #3b82f6;
+  --color-accent-purple: #8b5cf6;
+  --color-accent-emerald: #10b981;
+  --color-accent-amber: #f59e0b;
+}
+
+body {
+  @apply bg-[#030712] text-intel-50 font-sans antialiased selection:bg-accent-blue selection:text-white;
+  /* Premium radial gradient background */
+  background-image:
+    radial-gradient(circle at 15% 50%, rgba(59, 130, 246, 0.08) 0%, transparent 40%),
+    radial-gradient(circle at 85% 30%, rgba(139, 92, 246, 0.08) 0%, transparent 40%);
+  background-attachment: fixed;
+}
+
+/* Custom Scrollbar for a premium feel */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-intel-800 rounded-full border-2 border-[#030712];
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-intel-700;
+}
+
+/* Glassmorphism utilities */
+.glass-panel {
+  @apply bg-[#0f172a]/60 backdrop-blur-xl border border-white/5;
+  box-shadow: 0 4px 24px -1px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.glass-card {
+  @apply bg-gradient-to-b from-[#1e293b]/80 to-[#0f172a]/80 backdrop-blur-lg border border-white/10;
+  box-shadow: 0 8px 32px -4px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* Recharts overrides for dark mode */
+.recharts-cartesian-grid-horizontal line,
+.recharts-cartesian-grid-vertical line {
+  stroke: rgba(255, 255, 255, 0.05);
+}
+
+.recharts-text {
+  fill: #94a3b8 !important;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.recharts-tooltip-wrapper {
+  outline: none !important;
+}
