@@ -6,7 +6,7 @@ pydantic-settings
 pydantic>=2.0.0
 alembic
 celery
-redis
+redis[asyncio]
 boto3
 httpx
 tiktoken
@@ -16,3 +16,8 @@ pyyaml
 psycopg[binary]
 pytest
 pytest-asyncio
+# platform layer
+python-jose[cryptography]
+passlib[bcrypt]
+stripe>=8.0.0
+pydantic[email]

@@ -1,0 +1,40 @@
+# ============================================================================
+# Docker Compose Development Overrides
+# ============================================================================
+# This file is automatically loaded by docker-compose.
+# Use it for development-specific settings that override docker-compose.yml.
+# ============================================================================
+
+version: '3.9'
+
+services:
+  backend:
+    # Enable hot reload during development
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+    environment:
+      # Enable debug logging
+      PYTHONUNBUFFERED: 1
+      STAXX_PROXY_DEBUG: "true"
+
+  proxy:
+    # Enable debug mode and hot reload
+    environment:
+      STAXX_PROXY_DEBUG: "true"
+    command: uvicorn main:app --host 0.0.0.0 --port 8080 --reload
+
+  celery-worker:
+    # Single concurrency for easier debugging
+    command: celery -A app.workers.celery_app worker -c 1 -Q metrics,default --loglevel=debug
+    environment:
+      PYTHONUNBUFFERED: 1
+
+  frontend:
+    # Already in dev mode with hot reload built-in
+
+  postgres:
+    # Extra debugging if needed
+    # command: postgres -c log_statement=all
+
+  redis:
+    # Monitor activity
+    # command: redis-server --appendonly yes --logfile ""

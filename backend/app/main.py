@@ -18,6 +18,7 @@ async def lifespan(app: FastAPI):
 
 
 from app.api.router import api_router
+from platform.middleware.tenant import TenantMiddleware
 
 app = FastAPI(
     title=settings.PROJECT_NAME,
@@ -25,6 +26,7 @@ app = FastAPI(
     lifespan=lifespan,
 )
 
+app.add_middleware(TenantMiddleware)
 app.include_router(api_router, prefix=settings.API_V1_STR)
 
 @app.get("/health")
